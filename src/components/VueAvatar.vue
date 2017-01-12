@@ -96,20 +96,21 @@
 			this.canvas = this.$refs.canvas
 			this.context = this.canvas.getContext('2d')
 			this.paint()
-            if(this.image)
+            if(!this.image)
             {
-                console.log('ELL')
-                /*this.context.drawSvg('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 157.68 137.97"><defs><style>.cls-1{fill:#333;}</style></defs><title>upload logo</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="cls-1" d="M137.91,44.9l.06-.55a44.21,44.21,0,0,0-82.66-22,24.47,24.47,0,0,0-35.6,22l.06.55a39.27,39.27,0,0,0,19.65,73.36h9.85V108.4H39.42a29.42,29.42,0,0,1-14.69-55l4.89-2.86V44.9l0-1A14.61,14.61,0,0,1,50.9,31.2l8.33,4.16,4.63-8.07A34.09,34.09,0,0,1,93.62,9.85a34.54,34.54,0,0,1,34.49,33.9l-.06.37v6.44l4.89,2.86a29.42,29.42,0,0,1-14.69,55H108.4v9.85h9.85A39.27,39.27,0,0,0,137.91,44.9Z"/><polygon class="cls-1" points="78.84 49.27 49.27 88.69 68.98 88.69 68.98 137.97 88.69 137.97 88.69 88.69 108.4 88.69 78.84 49.27 78.84 49.27"/></g></g></svg>',0,0,200,200)*/
                 var placeHolder = this.svgToImage(this.context,'<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 65"><defs><style>.cls-1{fill:#999;}</style></defs><title>Upload_Upload</title><path class="cls-1" d="M32.5,1A31.5,31.5,0,1,1,1,32.5,31.54,31.54,0,0,1,32.5,1m0-1A32.5,32.5,0,1,0,65,32.5,32.5,32.5,0,0,0,32.5,0h0Z"/><polygon class="cls-1" points="41.91 28.2 32.59 18.65 23.09 28.39 24.17 29.44 31.87 21.54 31.87 40.05 33.37 40.05 33.37 21.59 40.83 29.25 41.91 28.2"/><polygon class="cls-1" points="40.66 40.35 40.66 44.35 24.34 44.35 24.34 40.35 22.34 40.35 22.34 44.35 22.34 46.35 24.34 46.35 40.66 46.35 42.66 46.35 42.66 44.35 42.66 40.35 40.66 40.35"/></svg>');
                 var self = this;
                
                 placeHolder.onload = function(){
                     var dim = self.getDimensions()
-                    console.log(this.width)
                     var x = self.canvasWidth / 2 - this.width / 2
                     var y = self.canvasHeight / 2 - this.height / 2
                     self.context.drawImage(placeHolder,x,y,this.width,this.height);
                 }
+            }
+            else
+            {
+                this.loadImage(this.image)
             }
 		},
 		methods:{
