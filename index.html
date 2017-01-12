@@ -1,1 +1,209 @@
-My Page
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Software Development Services | Software Technologies | Web Apps | Mobile Apps</title>
+		<meta name="description" content="At 220 Software Technologies, We focus on setting the standard for excellence, transparency, accountability and uncompromising quality." />
+		<meta name="keywords" content="Software Development, PHP, Laravel, VUEJS, iOS, Perl, Ruby On Rails " />
+		<meta name="author" content="Two Twenty Software Technology Pvt Ltd" />
+		<!-- Bootstrap -->
+		<script src="js/modernizr.custom.js"></script>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/jquery.fancybox.css" rel="stylesheet">
+		<link href="css/flickity.css" rel="stylesheet" >
+		<link href="css/animate.css" rel="stylesheet">
+		<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+		<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+		<link href="css/styles.css" rel="stylesheet">
+		<link href="css/queries.css" rel="stylesheet">
+		<link href="css/scrolling-nav.css" rel="stylesheet">
+
+		
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body id="home">
+        <nav class="navbar navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header page-scroll">
+                    <a  href="http://blog.220tech.co.in"><img src="img/220-technologies-logo-small.png?v=81fac4dd85" alt="220 technologies Logo"></a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+        <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please visit <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <!-- open/close -->
+        
+        
+
+<header>
+    <section class="hero" >
+        <div class="texture-overlay"></div>
+        <div class="container">
+            <div class="row hero-content text-center post-hero">
+                <div class="col-md-12">
+                    <h1 class="animated fadeInDown ">BUGZILLA ALERTS USING GMAIL</h1>
+                    <h4><a href="/author/dawood/">Dawood Sangameshwari</a><br>09 January 2017</span></h4>
+                </div>
+            </div>
+        </div>
+    </section>
+</header>
+<section class="showcase post-full">
+    <div class="showcase-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="post">
+                        <h1>BUGZILLA ALERTS USING GMAIL</h1>
+                        <div class="post-content">
+                                <p>This article explains how to use GMAIL SMTP(TLS AUTH) to send bugzilla alerts.</p>
+
+<p>Bugzilla supports following methods to send mail alerts :</p>
+
+<ul>
+<li>sendmail</li>
+<li>SMTP</li>
+</ul>
+
+<p>For SMTP method BugZilla uses <a href="http://search.cpan.org/~rjbs/Email-Send-2.194/lib/Email/Send/SMTP.pm">Email::Send::SMTP</a> Perl module. GMAIL SMTP uses TLS ( Transport Layer Security ) as authentication method, so Email::Send::SMTP can not be used for the same.</p>
+
+<p>We need to use another perl module <a href="http://search.cpan.org/~fayland/Email-Send-SMTP-TLS-0.03/lib/Email/Send/SMTP/TLS.pm">Email::Send::SMTP::TLS</a>.</p>
+
+<p>First step would be to install Email::Send::SMTP::TLS from CPAN. use following steps to do so :</p>
+
+<p><strong>using CPAN shell</strong></p>
+
+<p>Launch CPAN shell as follows</p>
+
+<pre><code>perl -MCPAN -e shell  
+</code></pre>
+
+<p>and then on CPAN Shell execute following command</p>
+
+<pre><code>cpan&gt; install Email::Send::SMTP::TLS  
+</code></pre>
+
+<p>cpan shell might ask you to install additional modules, install them.</p>
+
+<p><strong>compiling from source</strong></p>
+
+<p>Download source from <a href="http://search.cpan.org/~fayland/Email-Send-SMTP-TLS-0.03/lib/Email/Send/SMTP/TLS.pm">HERE</a> and execute following commands</p>
+
+<pre><code>tar zxvf Email-Send-SMTP-TLS-0.03.tar.gz  
+cd Email-Send-SMTP-TLS-0.03  
+./configure
+make  
+make install  
+</code></pre>
+
+<p>Once Email:Send::SMTP::TLS is installed, BugZilla should have SMTP::TLS method to send alerts. This can be verified by logging in as admin to BugZilla and going to <strong>Administration -> Parameters -> Email</strong></p>
+
+<p><img src="/content/images/2017/01/bugzilla_tls_method.png" alt="" /></p>
+
+<p>Now we need tweak BugZilla code. carefully execute following instructions and don’t forget to backup files before you modify. <br />
+Go to your BugZilla installation directory and execute following command</p>
+
+<pre><code>cd Bugzilla  
+</code></pre>
+
+<p>Open <em>Mailer.pm</em> file.</p>
+
+<p>Add following line after last ‘use’ statement</p>
+
+<pre><code>use Email::Send::SMTP::TLS;  
+</code></pre>
+
+<p>Search for following code</p>
+
+<pre><code>sub MessageToMTA {  
+</code></pre>
+
+<p>add following line after it</p>
+
+<pre><code>my ($smtp_server,$smtp_port);  
+</code></pre>
+
+<p>search for following if block</p>
+
+<pre><code>if ($method eq "SMTP") {  
+</code></pre>
+
+<p>and change it to</p>
+
+<pre><code>if ($method eq "SMTP" || $method eq "SMTP::TLS") {  
+($smtp_server,$smtp_port) = split /:/,Bugzilla-&gt;params-&gt;{"smtpserver"};
+        push @args, 
+            Host  =&gt; $smtp_server,
+            User =&gt; Bugzilla-&gt;params-&gt;{"smtp_username"},
+            Password =&gt; Bugzilla-&gt;params-&gt;{"smtp_password"},
+            Hello =&gt; $hostname, 
+            Debug =&gt; Bugzilla-&gt;params-&gt;{'smtp_debug'};
+        push @args, Port =&gt; $smtp_port if($smtp_port);
+}   
+</code></pre>
+
+<p>Now we need to do settings in bugzilla parameters. <br />
+Login as administrator to Bugzilla and go to <strong>Administration -> Parameters -> Email</strong> and do following settings</p>
+
+<ul>
+<li>Select SMTP::TLS as mail<em>delivery</em>method
+<img src="/content/images/2017/01/bugzilla_tls_method_gmail.png" alt="" /></li>
+<li>Enter your gmail address in mailfrom
+<img src="/content/images/2017/01/bugzilla_tls_mail_from.png" alt="" /></li>
+<li>Enter smtp.gmail.com:587 in smtpserver
+<img src="/content/images/2017/01/bugzilla_tls_smtpserver.png" alt="" /></li>
+<li>Enter email in smtp_username
+<img src="/content/images/2017/01/bugzilla_tls_smtpuser.png" alt="" /></li>
+<li>Enter gmail password in smtp_password
+<img src="/content/images/2017/01/bugzilla_tls_smtppass.png" alt="" /></li>
+</ul>
+                        </div>
+                        <div class="user-block">
+                            <img class="img-circle img-bordered-sm" src="//www.gravatar.com/avatar/8d31204a643d3e977252ddab1c09ef09?s&#x3D;250&amp;d&#x3D;mm&amp;r&#x3D;x" alt="Dawood Sangameshwari">
+                            <span class="username">
+                                By <a href="#"><a href="/author/dawood/">Dawood Sangameshwari</a></a>
+                            </span>
+                            <span class="description"> posted under <a href="/tag/technology/">Technology</a>  on  09 January 2017</span>
+                        </div>
+                    </div>
+                   <div id="disqus_thread"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+
+        
+        
+        
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="js/min/toucheffects-min.js"></script>
+		<script src="js/jquery.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="js/retina.js"></script>
+		<script src="js/waypoints.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/min/scripts-min.js"></script>
+		<script src="js/jquery.easing.min.js"></script>
+    	<script src="js/scrolling-nav.js"></script>		
+	</body>
+</html>
