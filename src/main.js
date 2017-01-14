@@ -13,7 +13,6 @@ let vm = new Vue({
       	this.$refs.vueavatar.changeScale(scale)
     },
     saveClicked(){
-    	console.log('save clicked')
     	var img = this.$refs.vueavatar.getImageScaled()
     	document.getElementById('img-1').src = img.toDataURL()
     },
