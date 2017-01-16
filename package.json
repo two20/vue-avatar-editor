@@ -71,5 +71,5 @@
     "test": "npm run unit && npm run e2e",
     "unit": "karma start test/unit/karma.conf.js --single-run"
   },
-  "version": "1.0.3"
+  "version": "1.0.4"
 }
