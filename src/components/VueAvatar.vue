@@ -71,6 +71,7 @@
 				context:null,
                 dragged:false,
                 imageLoaded:false,
+                changed:false,
 				state: {
     				drag: false,
     				my: null,
@@ -172,6 +173,7 @@
       				//this.props.onDropFile(e)
       				const reader = new FileReader()
       				const file = e.dataTransfer.files[0]
+                    this.changed = true
       				reader.onload = (e) => this.loadImage(e.target.result)
       				reader.readAsDataURL(file)
     			}
@@ -198,6 +200,7 @@
     			}
 
     			this.dragged = true
+                this.changed = true
 
     			let imageState = this.state.image
                 const lastX = imageState.x
@@ -325,6 +328,7 @@
                 }
             },
             changeScale:function(sc){
+                this.changed = true
                 this.scale = sc
             },
             redraw:function(){
@@ -364,6 +368,9 @@
                 this.paintImage(canvas.getContext('2d'), this.state.image, 0)
 
                 return canvas
+            },
+            imageChanged:function(){
+                return this.changed
             },
             getCroppingRect: function () {
                 const dim = this.getDimensions()
