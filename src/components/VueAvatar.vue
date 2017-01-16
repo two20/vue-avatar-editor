@@ -399,6 +399,7 @@
                     return;
                 var image     = new Image();
                 var reader    = new FileReader();
+                this.changed = true
                 reader.onload = (e) => {
                     this.loadImage(e.target.result)
                 };
